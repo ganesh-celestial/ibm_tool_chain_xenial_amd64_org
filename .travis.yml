@@ -3,5 +3,23 @@ arch: amd64
 group: edge
 virt: lxd
 script:
-  - cd /opt
+  - which gcc
+  - gcc programs/hello_world.c -o hello_world_c_program
+  - ./hello_world_c_program
+  - echo "Running Hello world (C++ Program) using default g++ compiler"
+  - which g++
+  - g++ programs/hello_world.cpp -o hello_world_cpp_program
+  - ./hello_world_cpp_program
+  - echo "Running Hello world (GO Program) using default go"
+  - go run hello_world.go
+  - echo "Running Hello world (Python Program) using default python"
+  - python programs/hello_world.py
+  - rm -rf hello_world_c_program hello_world_cpp_program
+  - echo "Running Hello world (C program) using IBM advanced tool chain gcc compiler"
+  - /opt/at12.0/bin/powerpc64le-linux-gnu-gcc programs/hello_world.c -o hello_world_c_program
+  - echo "Running Hello world (C++ Program) using IBM advanced tool chain g++ compiler"
+  - /opt/at12.0/bin/powerpc64le-linux-gnu-g++ programs/hello_world.cpp -o hello_world_cpp_program
+  - echo "Running Hello world (GO Program) using IBM advanced tool chain gccgo compiler"
+  - /opt/at12.0/bin/powerpc64le-linux-gnu-gccgo hello_world.go -o hello_world_go_program
+  - sudo sh python_interpreter.sh
   - ls
