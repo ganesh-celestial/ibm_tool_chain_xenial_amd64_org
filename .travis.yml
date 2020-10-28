@@ -2,6 +2,7 @@ dist: xenial
 arch: amd64
 group: edge
 virt: lxd
+language: go
 script:
   - which gcc
   - gcc programs/hello_world.c -o hello_world_c_program
